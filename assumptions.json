@@ -1,0 +1,20 @@
+{
+    "average_commute_distance_miles": 16.1,
+    "kwh_per_mile": 0.3,
+    "charger_kw": 6.6,
+    "driver_profiles": {
+      "9-5 Job": {
+        "Charging Hours Start": "6:00 PM",
+        "Charging Hours End": "8:00 AM"
+      },
+      "Shift Work (graveyard)": {
+        "Charging Hours Start": "9:00 AM",
+        "Charging Hours End": "11:00 PM"
+      },
+      "Shift Work (midday)": {
+        "Charging Hours Start": "9:00 PM",
+        "Charging Hours End": "11:00 AM"
+      }
+    }
+  }
+  
