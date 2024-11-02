@@ -47,6 +47,16 @@ def load_rate_data():
         })
     return rate_plans
 
+def _in_time_period(reverse_period, period_start, period_stop, entry_start, entry_stop):
+    # 16:00 - 8:00 am, 12:am - 3pm, case 2 11PM - 3PM, 6AM - 12PM
+    return reverse_period and (
+        period_stop > entry_start or period_start < entry_stop or (
+            period_start < entry_start and entry_start > entry_stop)
+        # 9am - 11pm, 12am -3pm, 8am - 4pm
+        ) or period_start >= entry_start or period_stop >= entry_stop or (
+            period_start < entry_start and period_start < entry_stop and entry_start > entry_stop)
+
+
 def find_overlapping_entries(rate_plans, plan_name, season, day_type, period_start, period_stop):
     """
     Retrieve all entries that overlap with a given start and stop time period.
@@ -61,14 +71,16 @@ def find_overlapping_entries(rate_plans, plan_name, season, day_type, period_sta
     for entry in combined_rate_plans:
         entry_start = entry['start_time']
         entry_stop = entry['stop_time']
-        # 16:00 - 8:00 am, 12:am - 3pm
-        if reverse_period:
-            if period_stop > entry_start or period_start < entry_stop:
-                overlapping_entries.append(entry)
-        # 9am - 11pm, 12am -3pm
-        else:
-            if period_start > entry_start or period_stop > entry_stop:
-                overlapping_entries.append(entry)
+        # if entry['tou_name'] == "Super Off-Peak" and "Southern California Edison Company TOU-D-PRIME" == plan_name:
+        # if "Southern California Edison Company TOU-D-PRIME" == plan_name:
+        #     print (">>>>", entry['tou_name'], entry, (period_start < entry_start and entry_start > entry_stop))
+        # 16:00 - 8:00 am, 12:am - 3pm, case 2 11PM - 3PM
+        if _in_time_period(reverse_period, period_start, period_stop, entry_start, entry_stop):
+            overlapping_entries.append(entry)
+
+    # if "Southern California Edison Company TOU-D-PRIME" == plan_name:
+    #     print("*" * 80)
+    #     print(overlapping_entries)
 
     return overlapping_entries
 
@@ -117,7 +129,7 @@ def calculate_charging_cost_for_period(rate_plans, plan_name, season, day_type, 
                     charging_time_in_period = min(time_difference.total_seconds() / 3600, remaining_hours)
                     remaining_hours -= charging_time_in_period
                     charging_details.append({
-                        "period": f"{entry_start.strftime('%I:%M %p')} - {period_stop.strftime('%I:%M %p')}",
+                        "period": f"{entry_start.strftime('%I:%M %p')} - {entry_stop.strftime('%I:%M %p')}",
                         "hours": charging_time_in_period,
                         "cost": charging_time_in_period * entry_rate,
                         "tou_name": entry_tou_name
@@ -128,7 +140,19 @@ def calculate_charging_cost_for_period(rate_plans, plan_name, season, day_type, 
                     charging_time_in_period = min(time_difference.total_seconds() / 3600, remaining_hours)
                     remaining_hours -= charging_time_in_period
                     charging_details.append({
-                        "period": f"{entry_start.strftime('%I:%M %p')} - {period_stop.strftime('%I:%M %p')}",
+                        "period": f"{entry_start.strftime('%I:%M %p')} - {entry_stop.strftime('%I:%M %p')}",
+                        "hours": charging_time_in_period,
+                        "cost": charging_time_in_period * entry_rate,
+                        "tou_name": entry_tou_name
+                    })
+                # 16:00 - 8:00 am, 12:am - 3pm, case 2 11PM - 3PM
+            elif period_start < entry_start and entry_start > entry_stop:
+                time_difference = entry_start_dt - period_start_dt
+                if time_difference > timedelta(0):
+                    charging_time_in_period = min(time_difference.total_seconds() / 3600, remaining_hours)
+                    remaining_hours -= charging_time_in_period
+                    charging_details.append({
+                        "period": f"{entry_start.strftime('%I:%M %p')} - {entry_stop.strftime('%I:%M %p')}",
                         "hours": charging_time_in_period,
                         "cost": charging_time_in_period * entry_rate,
                         "tou_name": entry_tou_name
@@ -136,28 +160,44 @@ def calculate_charging_cost_for_period(rate_plans, plan_name, season, day_type, 
                 
         # 9am - 11pm, 12am -3pm
         else:
-            if period_start > entry_start:
+            if period_start >= entry_start:
                 time_difference = period_start_dt - entry_start_dt
                 if time_difference > timedelta(0):
                     charging_time_in_period = min(time_difference.total_seconds() / 3600, remaining_hours)
                     remaining_hours -= charging_time_in_period
                     charging_details.append({
-                        "period": f"{entry_start.strftime('%I:%M %p')} - {period_stop.strftime('%I:%M %p')}",
+                        "period": f"{entry_start.strftime('%I:%M %p')} - {entry_stop.strftime('%I:%M %p')}",
                         "hours": charging_time_in_period,
                         "cost": charging_time_in_period * entry_rate,
                         "tou_name": entry_tou_name
                     })
-            elif period_stop > entry_stop:
+            elif period_stop >= entry_stop:
                 time_difference = period_stop_dt - entry_stop_dt
                 if time_difference > timedelta(0):
                     charging_time_in_period = min(time_difference.total_seconds() / 3600, remaining_hours)
                     remaining_hours -= charging_time_in_period
                     charging_details.append({
-                        "period": f"{entry_start.strftime('%I:%M %p')} - {period_stop.strftime('%I:%M %p')}",
+                        "period": f"{entry_start.strftime('%I:%M %p')} - {entry_stop.strftime('%I:%M %p')}",
                         "hours": charging_time_in_period,
                         "cost": charging_time_in_period * entry_rate,
                         "tou_name": entry_tou_name
                     })
+            # 9am - 11pm, 12am -3pm, 11PM - 3PM
+            elif period_start < entry_start and period_start < entry_stop and entry_start > entry_stop:
+                time_difference = entry_start_dt - period_start_dt
+                if time_difference > timedelta(0):
+                    charging_time_in_period = min(time_difference.total_seconds() / 3600, remaining_hours)
+                    remaining_hours -= charging_time_in_period
+                    charging_details.append({
+                        "period": f"{entry_start.strftime('%I:%M %p')} - {entry_stop.strftime('%I:%M %p')}",
+                        "hours": charging_time_in_period,
+                        "cost": charging_time_in_period * entry_rate,
+                        "tou_name": entry_tou_name
+                    })
+
+    # if "Pacific Gas and Electric Company EV A" == plan_name:
+    #     print("#" * 30)
+    #     print(charging_details)
 
     return charging_details
 
@@ -214,6 +254,7 @@ def print_charging_costs(charging_costs):
     output_df = pd.DataFrame(output_rows)
     output_df.to_csv(OUTPUT_CSV_FILE, index=False)
     print(f"\nResults have been saved to {OUTPUT_CSV_FILE}")
+
 
 def main():
     # Load assumptions and rate data
