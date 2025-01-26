@@ -1,5 +1,6 @@
 {
-    "average_commute_distance_miles": 75,
+    "average_commute_distance_miles": 16.1,
+    "super_commute_distance_miles": 75,
     "kwh_per_mile": 0.3,
     "charger_kw_level_2": 6.6,
     "charger_kw_level_1": 1,

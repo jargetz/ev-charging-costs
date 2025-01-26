@@ -1,0 +1,105 @@
+Profile,Plan,Period,Hours,Cost,TOU,Level
+9-5 Job,Pacific Gas and Electric Company E-TOU-D,08:00 PM - 05:00 PM,1.463636364,4.1538,Off-Peak,2
+9-5 Job,Pacific Gas and Electric Company E-TOU-D,08:00 PM - 05:00 PM,9.66,4.1538,Off-Peak,1
+9-5 Job,Pacific Gas and Electric Company EV2,12:00 AM - 03:00 PM,1.463636364,3.0912,Super Off-Peak,2
+9-5 Job,Pacific Gas and Electric Company EV2,12:00 AM - 03:00 PM,8,2.56,Super Off-Peak,1
+9-5 Job,Pacific Gas and Electric Company EV2,09:00 PM - 12:00 AM,1.66,0.8798,Off-Peak,1
+9-5 Job,Pacific Gas and Electric Company EV A,11:00 PM - 07:00 AM,1.463636364,3.381,Super Off-Peak,2
+9-5 Job,Pacific Gas and Electric Company EV A,11:00 PM - 07:00 AM,8,2.8,Super Off-Peak,1
+9-5 Job,Pacific Gas and Electric Company EV A,07:00 AM - 02:00 PM,1,0.46,Off-Peak,1
+9-5 Job,Pacific Gas and Electric Company EV A,09:00 PM - 11:00 PM,0.66,0.3036,Off-Peak,1
+9-5 Job,Pacific Gas and Electric Company EV B,11:00 PM - 07:00 AM,1.463636364,3.2844,Super Off-Peak,2
+9-5 Job,Pacific Gas and Electric Company EV B,11:00 PM - 07:00 AM,8,2.72,Super Off-Peak,1
+9-5 Job,Pacific Gas and Electric Company EV B,07:00 AM - 02:00 PM,1,0.46,Off-Peak,1
+9-5 Job,Pacific Gas and Electric Company EV B,09:00 PM - 11:00 PM,0.66,0.3036,Off-Peak,1
+9-5 Job,San Diego Gas and Electric Company EV-TOU-5 Pricing Plan,12:00 AM - 06:00 AM,1.463636364,1.2558,Super Off-Peak,2
+9-5 Job,San Diego Gas and Electric Company EV-TOU-5 Pricing Plan,12:00 AM - 06:00 AM,6,0.78,Super Off-Peak,1
+9-5 Job,San Diego Gas and Electric Company EV-TOU-5 Pricing Plan,06:00 AM - 04:00 PM,2,0.86,Off-Peak,1
+9-5 Job,San Diego Gas and Electric Company EV-TOU-5 Pricing Plan,04:00 PM - 09:00 PM,1.66,1.1288,Peak,1
+9-5 Job,San Diego Gas and Electric Company EV-TOU-5 P,12:00 AM - 06:00 AM,1.463636364,1.1592,Super Off-Peak,2
+9-5 Job,San Diego Gas and Electric Company EV-TOU-5 P,12:00 AM - 06:00 AM,6,0.72,Super Off-Peak,1
+9-5 Job,San Diego Gas and Electric Company EV-TOU-5 P,06:00 AM - 04:00 PM,2,0.82,Off-Peak,1
+9-5 Job,San Diego Gas and Electric Company EV-TOU-5 P,04:00 PM - 09:00 PM,1.66,1.0458,Peak,1
+9-5 Job,San Diego Gas and Electric Company EV-TOU,12:00 AM - 06:00 AM,1.463636364,2.415,Super Off-Peak,2
+9-5 Job,San Diego Gas and Electric Company EV-TOU,12:00 AM - 06:00 AM,6,1.5,Super Off-Peak,1
+9-5 Job,San Diego Gas and Electric Company EV-TOU,06:00 AM - 04:00 PM,2,0.9,Off-Peak,1
+9-5 Job,San Diego Gas and Electric Company EV-TOU,04:00 PM - 09:00 PM,1.66,1.162,Peak,1
+9-5 Job,San Diego Gas and Electric Company EV-TOU-2,12:00 AM - 06:00 AM,1.463636364,2.415,Super Off-Peak,2
+9-5 Job,San Diego Gas and Electric Company EV-TOU-2,12:00 AM - 06:00 AM,6,1.5,Super Off-Peak,1
+9-5 Job,San Diego Gas and Electric Company EV-TOU-2,06:00 AM - 04:00 PM,2,0.9,Off-Peak,1
+9-5 Job,San Diego Gas and Electric Company EV-TOU-2,04:00 PM - 09:00 PM,1.66,1.162,Peak,1
+9-5 Job,Southern California Edison Company TOU-D-PRIME,09:00 PM - 04:00 PM,1.463636364,2.415,Off-Peak,2
+9-5 Job,Southern California Edison Company TOU-D-PRIME,09:00 PM - 04:00 PM,9.66,2.415,Off-Peak,1
+9-5 Job,Sacramento Municipal Utility District R-TOD with Plug-In EV Credit,06:00 AM - 12:00 PM,1.463636364,1.3524,Super Off-Peak,2
+9-5 Job,Sacramento Municipal Utility District R-TOD with Plug-In EV Credit,06:00 AM - 12:00 PM,2,0.28,Super Off-Peak,1
+9-5 Job,Sacramento Municipal Utility District R-TOD with Plug-In EV Credit,12:00 AM - 06:00 AM,6,0.78,Super Off-Peak,1
+9-5 Job,Sacramento Municipal Utility District R-TOD with Plug-In EV Credit,08:00 PM - 12:00 AM,1.66,0.332,Off-Peak,1
+9-5 Job,Marin Clean Energy EV2,12:00 AM - 03:00 PM,1.463636364,4.2504,Super Off-Peak,2
+9-5 Job,Marin Clean Energy EV2,12:00 AM - 03:00 PM,8,3.52,Super Off-Peak,1
+9-5 Job,Marin Clean Energy EV2,09:00 PM - 12:00 AM,1.66,1.1288,Off-Peak,1
+Shift Work (graveyard),Pacific Gas and Electric Company E-TOU-D,08:00 PM - 05:00 PM,1.463636364,4.1538,Off-Peak,2
+Shift Work (graveyard),Pacific Gas and Electric Company E-TOU-D,08:00 PM - 05:00 PM,9.66,4.1538,Off-Peak,1
+Shift Work (graveyard),Pacific Gas and Electric Company EV2,12:00 AM - 03:00 PM,1.463636364,3.0912,Super Off-Peak,2
+Shift Work (graveyard),Pacific Gas and Electric Company EV2,12:00 AM - 03:00 PM,6,1.92,Super Off-Peak,1
+Shift Work (graveyard),Pacific Gas and Electric Company EV2,03:00 PM - 04:00 PM,1,0.53,Off-Peak,1
+Shift Work (graveyard),Pacific Gas and Electric Company EV2,09:00 PM - 12:00 AM,2,1.06,Off-Peak,1
+Shift Work (graveyard),Pacific Gas and Electric Company EV2,04:00 PM - 09:00 PM,0.66,0.4224,Peak,1
+Shift Work (graveyard),Pacific Gas and Electric Company EV A,07:00 AM - 02:00 PM,1.463636364,4.4436,Off-Peak,2
+Shift Work (graveyard),Pacific Gas and Electric Company EV A,07:00 AM - 02:00 PM,5,2.3,Off-Peak,1
+Shift Work (graveyard),Pacific Gas and Electric Company EV A,09:00 PM - 11:00 PM,2,0.92,Off-Peak,1
+Shift Work (graveyard),Pacific Gas and Electric Company EV A,02:00 PM - 09:00 PM,2.66,1.862,Peak,1
+Shift Work (graveyard),Pacific Gas and Electric Company EV B,07:00 AM - 02:00 PM,1.463636364,4.4436,Off-Peak,2
+Shift Work (graveyard),Pacific Gas and Electric Company EV B,07:00 AM - 02:00 PM,5,2.3,Off-Peak,1
+Shift Work (graveyard),Pacific Gas and Electric Company EV B,09:00 PM - 11:00 PM,2,0.92,Off-Peak,1
+Shift Work (graveyard),Pacific Gas and Electric Company EV B,02:00 PM - 09:00 PM,2.66,1.862,Peak,1
+Shift Work (graveyard),San Diego Gas and Electric Company EV-TOU-5 Pricing Plan,06:00 AM - 04:00 PM,1.463636364,4.1538,Off-Peak,2
+Shift Work (graveyard),San Diego Gas and Electric Company EV-TOU-5 Pricing Plan,06:00 AM - 04:00 PM,7,3.01,Off-Peak,1
+Shift Work (graveyard),San Diego Gas and Electric Company EV-TOU-5 Pricing Plan,04:00 PM - 09:00 PM,2.66,1.8088,Peak,1
+Shift Work (graveyard),San Diego Gas and Electric Company EV-TOU-5 P,06:00 AM - 04:00 PM,1.463636364,3.9606,Off-Peak,2
+Shift Work (graveyard),San Diego Gas and Electric Company EV-TOU-5 P,06:00 AM - 04:00 PM,7,2.87,Off-Peak,1
+Shift Work (graveyard),San Diego Gas and Electric Company EV-TOU-5 P,04:00 PM - 09:00 PM,2.66,1.6758,Peak,1
+Shift Work (graveyard),San Diego Gas and Electric Company EV-TOU,06:00 AM - 04:00 PM,1.463636364,4.347,Off-Peak,2
+Shift Work (graveyard),San Diego Gas and Electric Company EV-TOU,06:00 AM - 04:00 PM,7,3.15,Off-Peak,1
+Shift Work (graveyard),San Diego Gas and Electric Company EV-TOU,04:00 PM - 09:00 PM,2.66,1.862,Peak,1
+Shift Work (graveyard),San Diego Gas and Electric Company EV-TOU-2,06:00 AM - 04:00 PM,1.463636364,4.347,Off-Peak,2
+Shift Work (graveyard),San Diego Gas and Electric Company EV-TOU-2,06:00 AM - 04:00 PM,7,3.15,Off-Peak,1
+Shift Work (graveyard),San Diego Gas and Electric Company EV-TOU-2,04:00 PM - 09:00 PM,2.66,1.862,Peak,1
+Shift Work (graveyard),Southern California Edison Company TOU-D-PRIME,09:00 PM - 04:00 PM,1.463636364,2.415,Off-Peak,2
+Shift Work (graveyard),Southern California Edison Company TOU-D-PRIME,09:00 PM - 04:00 PM,2,0.5,Off-Peak,1
+Shift Work (graveyard),Southern California Edison Company TOU-D-PRIME,04:00 PM - 09:00 PM,5,2.85,Peak,1
+Shift Work (graveyard),Sacramento Municipal Utility District R-TOD with Plug-In EV Credit,06:00 AM - 12:00 PM,1.463636364,1.3524,Super Off-Peak,2
+Shift Work (graveyard),Sacramento Municipal Utility District R-TOD with Plug-In EV Credit,06:00 AM - 12:00 PM,3,0.42,Super Off-Peak,1
+Shift Work (graveyard),Sacramento Municipal Utility District R-TOD with Plug-In EV Credit,12:00 PM - 05:00 PM,5,1,Off-Peak,1
+Shift Work (graveyard),Sacramento Municipal Utility District R-TOD with Plug-In EV Credit,08:00 PM - 12:00 AM,1.66,0.332,Off-Peak,1
+Shift Work (graveyard),Marin Clean Energy EV2,12:00 AM - 03:00 PM,1.463636364,4.2504,Super Off-Peak,2
+Shift Work (graveyard),Marin Clean Energy EV2,12:00 AM - 03:00 PM,6,2.64,Super Off-Peak,1
+Shift Work (graveyard),Marin Clean Energy EV2,03:00 PM - 04:00 PM,1,0.68,Off-Peak,1
+Shift Work (graveyard),Marin Clean Energy EV2,09:00 PM - 12:00 AM,2,1.36,Off-Peak,1
+Shift Work (graveyard),Marin Clean Energy EV2,04:00 PM - 09:00 PM,0.66,0.5478,Peak,1
+Shift Work (midday),Pacific Gas and Electric Company E-TOU-D,08:00 PM - 05:00 PM,1.463636364,4.1538,Off-Peak,2
+Shift Work (midday),Pacific Gas and Electric Company E-TOU-D,08:00 PM - 05:00 PM,9.66,4.1538,Off-Peak,1
+Shift Work (midday),Pacific Gas and Electric Company EV2,12:00 AM - 03:00 PM,1.463636364,3.0912,Super Off-Peak,2
+Shift Work (midday),Pacific Gas and Electric Company EV2,12:00 AM - 03:00 PM,9.66,3.0912,Super Off-Peak,1
+Shift Work (midday),Pacific Gas and Electric Company EV A,11:00 PM - 07:00 AM,1.463636364,3.381,Super Off-Peak,2
+Shift Work (midday),Pacific Gas and Electric Company EV A,11:00 PM - 07:00 AM,8,2.8,Super Off-Peak,1
+Shift Work (midday),Pacific Gas and Electric Company EV A,07:00 AM - 02:00 PM,1.66,0.7636,Off-Peak,1
+Shift Work (midday),Pacific Gas and Electric Company EV B,11:00 PM - 07:00 AM,1.463636364,3.2844,Super Off-Peak,2
+Shift Work (midday),Pacific Gas and Electric Company EV B,11:00 PM - 07:00 AM,8,2.72,Super Off-Peak,1
+Shift Work (midday),Pacific Gas and Electric Company EV B,07:00 AM - 02:00 PM,1.66,0.7636,Off-Peak,1
+Shift Work (midday),San Diego Gas and Electric Company EV-TOU-5 Pricing Plan,12:00 AM - 06:00 AM,1.463636364,1.2558,Super Off-Peak,2
+Shift Work (midday),San Diego Gas and Electric Company EV-TOU-5 Pricing Plan,12:00 AM - 06:00 AM,6,0.78,Super Off-Peak,1
+Shift Work (midday),San Diego Gas and Electric Company EV-TOU-5 Pricing Plan,06:00 AM - 04:00 PM,3.66,1.5738,Off-Peak,1
+Shift Work (midday),San Diego Gas and Electric Company EV-TOU-5 P,12:00 AM - 06:00 AM,1.463636364,1.1592,Super Off-Peak,2
+Shift Work (midday),San Diego Gas and Electric Company EV-TOU-5 P,12:00 AM - 06:00 AM,6,0.72,Super Off-Peak,1
+Shift Work (midday),San Diego Gas and Electric Company EV-TOU-5 P,06:00 AM - 04:00 PM,3.66,1.5006,Off-Peak,1
+Shift Work (midday),San Diego Gas and Electric Company EV-TOU,12:00 AM - 06:00 AM,1.463636364,2.415,Super Off-Peak,2
+Shift Work (midday),San Diego Gas and Electric Company EV-TOU,12:00 AM - 06:00 AM,6,1.5,Super Off-Peak,1
+Shift Work (midday),San Diego Gas and Electric Company EV-TOU,06:00 AM - 04:00 PM,3.66,1.647,Off-Peak,1
+Shift Work (midday),San Diego Gas and Electric Company EV-TOU-2,12:00 AM - 06:00 AM,1.463636364,2.415,Super Off-Peak,2
+Shift Work (midday),San Diego Gas and Electric Company EV-TOU-2,12:00 AM - 06:00 AM,6,1.5,Super Off-Peak,1
+Shift Work (midday),San Diego Gas and Electric Company EV-TOU-2,06:00 AM - 04:00 PM,3.66,1.647,Off-Peak,1
+Shift Work (midday),Sacramento Municipal Utility District R-TOD with Plug-In EV Credit,06:00 AM - 12:00 PM,1.463636364,1.3524,Super Off-Peak,2
+Shift Work (midday),Sacramento Municipal Utility District R-TOD with Plug-In EV Credit,06:00 AM - 12:00 PM,5,0.7,Super Off-Peak,1
+Shift Work (midday),Sacramento Municipal Utility District R-TOD with Plug-In EV Credit,12:00 AM - 06:00 AM,4.66,0.6058,Super Off-Peak,1
+Shift Work (midday),Marin Clean Energy EV2,12:00 AM - 03:00 PM,1.463636364,4.2504,Super Off-Peak,2
+Shift Work (midday),Marin Clean Energy EV2,12:00 AM - 03:00 PM,9.66,4.2504,Super Off-Peak,1

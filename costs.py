@@ -6,7 +6,6 @@ from collections import defaultdict
 # Constants for file names and configurable values
 ASSUMPTIONS_FILE = "assumptions.json"
 RATES_FILE = "rates.csv"
-OUTPUT_CSV_FILE = "charging_costs_over_one_day.csv"
 DAYS_OF_CHARGING = 1  # Number of days to simulate charging (e.g., two weekdays)
 SUMMER_SEASON = 'Summer'
 DAY_TYPE = 'Weekdays'
@@ -78,9 +77,9 @@ def find_overlapping_entries(rate_plans, plan_name, season, day_type, period_sta
         if _in_time_period(reverse_period, period_start, period_stop, entry_start, entry_stop):
             overlapping_entries.append(entry)
 
-    if "Pacific Gas and Electric Company EV A" == plan_name:
-        print("*" * 80)
-        print(overlapping_entries)
+    # if "Pacific Gas and Electric Company EV A" == plan_name:
+    #     print("*" * 80)
+    #     print(overlapping_entries)
 
     return overlapping_entries
 
@@ -124,10 +123,10 @@ def calculate_charging_cost_for_period(
 
         entry_start_dt = datetime.combine(datetime.today(), entry_start)
         entry_stop_dt = datetime.combine(datetime.today(), entry_stop)
+        print(entry_start_dt, entry_stop_dt, entry_start > entry_stop)
         #Count midnight as tomorrow for time differencing
         if entry_stop == time(0,0):
             entry_stop_dt += timedelta(days=1)
-            # print(entry_start_dt, entry_stop_dt, entry_stop_dt - entry_start_dt)
         period_start_dt = datetime.combine(datetime.today(), period_start)
         period_stop_dt = datetime.combine(datetime.today(), period_stop)
 
@@ -143,8 +142,7 @@ def calculate_charging_cost_for_period(
                     time_difference = entry_stop_dt - entry_start_dt
                 else:
                     time_difference = period_stop_dt - entry_start_dt
-                # if "Pacific Gas and Electric Company EV A" == plan_name:
-                #     print("1 period_start, period_stop, entry_start, entry_stop", period_start, period_stop, entry_start, entry_stop, time_difference)
+                # print("1 period_start, period_stop, entry_start, entry_stop", period_start, period_stop, entry_start, entry_stop, time_difference)
                 if time_difference > timedelta(0):
                     charging_time_in_period = min(time_difference.total_seconds() / 3600, remaining_hours)
                     remaining_hours -= charging_time_in_period
@@ -161,8 +159,7 @@ def calculate_charging_cost_for_period(
                     time_difference = entry_stop_dt - max(period_start_dt, entry_start_dt)
                 else:
                     time_difference = entry_start_dt - period_stop_dt
-                # if "Pacific Gas and Electric Company EV A" == plan_name:
-                #     print("2 period_start, period_stop, entry_start, entry_stop", period_start, period_stop, entry_start, entry_stop, time_difference)
+                # print("2 period_start, period_stop, entry_start, entry_stop", period_start, period_stop, entry_start, entry_stop, time_difference)
                 if time_difference > timedelta(0):
                     charging_time_in_period = min(time_difference.total_seconds() / 3600, remaining_hours)
                     remaining_hours -= charging_time_in_period
@@ -173,10 +170,12 @@ def calculate_charging_cost_for_period(
                         "tou_name": entry_tou_name,
                         "level": level
                     })
-                # 16:00 - 8:00 am, 12:am - 3pm, case 2 11PM - 3PM
+            # 16:00 - 8:00 am, 12:am - 3pm, case 2 11PM - 3PM
             elif period_start < entry_start and entry_start > entry_stop:
-                time_difference = entry_start_dt - period_stop_dt
-                # print("3 period_start, period_stop, entry_start, entry_stop", period_start, period_stop, entry_start, entry_stop, time_difference)
+                end_time = min(period_stop_dt, entry_stop_dt)
+                end_time += timedelta(days=1)
+                time_difference = end_time - entry_start_dt
+                # print("3 period_start, period_stop, entry_start, entry_stop", "time_difference", period_start, period_stop, entry_start, entry_stop, time_difference)
                 if time_difference > timedelta(0):
                     charging_time_in_period = min(time_difference.total_seconds() / 3600, remaining_hours)
                     remaining_hours -= charging_time_in_period
@@ -272,9 +271,9 @@ def simulate_charging_costs(
                     "2",
                     charger_kw_level_2,
                 )
-                total_cost_for_two_days_level_2 += sum(entry['cost'] for entry in charging_details)
-
+       
                 charging_details.extend(daily_charging_details)
+                total_cost_for_two_days_level_2 += sum(entry['cost'] for entry in charging_details)
 
                 if required_hours_per_day_level_1 <= 24:
                     daily_charging_details_l1 = calculate_charging_cost_for_period(
@@ -286,19 +285,19 @@ def simulate_charging_costs(
                         "1",
                         charger_kw_level_1
                     )
-                    total_cost_for_two_days_level_1 += sum(entry['cost'] for entry in charging_details)
                     charging_details.extend(daily_charging_details_l1)
+                    total_cost_for_two_days_level_1 += sum(entry['cost'] for entry in charging_details) 
 
             charging_costs[profile_name][plan_name] = {
                 "total_cost_level_2": total_cost_for_two_days_level_2,
-                "total_cost_level_1": total_cost_for_two_days_level_1,
+                "total_cost_level_1": total_cost_for_two_days_level_1 - total_cost_for_two_days_level_2,
                 "charging_details": charging_details
             }
     return charging_costs
 
-def print_charging_costs(charging_costs):
+def print_charging_costs(charging_costs, commute_name):
     """Print the total charging costs and detailed periods by TOU for each driver profile and plan name."""
-    print("Charging Costs and Detailed Periods by TOU for Each Driver Profile and Plan Name:")
+    print(f"[{commute_name}] Charging Costs and Detailed Periods by TOU for Each Driver Profile and Plan Name:")
     output_rows = []
     
     for profile_name, plans in charging_costs.items():
@@ -321,9 +320,10 @@ def print_charging_costs(charging_costs):
                 })
 
     # Output to CSV
+    file_name = f"charging_costs_over_one_day_{commute_name}.csv"
     output_df = pd.DataFrame(output_rows)
-    output_df.to_csv(OUTPUT_CSV_FILE, index=False)
-    print(f"\nResults have been saved to {OUTPUT_CSV_FILE}")
+    output_df.to_csv(file_name, index=False)
+    print(f"\nResults have been saved to {file_name}")
 
 
 def main():
@@ -332,30 +332,34 @@ def main():
     rate_plans = load_rate_data()
     
     # Extract assumptions
-    average_commute_distance_miles = assumptions["average_commute_distance_miles"]
-    kwh_per_mile = assumptions["kwh_per_mile"]
-    charger_kw_level_2 = assumptions["charger_kw_level_2"]
-    charger_kw_level_1 = assumptions["charger_kw_level_1"]
-    driver_profiles = assumptions["driver_profiles"]
+    for name, distance in [
+        ("average_commute", assumptions["average_commute_distance_miles"]),
+        ("super_commute", assumptions["super_commute_distance_miles"])]:
 
-    # Calculate the daily charging needs in kWh and hours
-    daily_energy_kwh = average_commute_distance_miles * kwh_per_mile * 2  # round-trip
-    required_hours_per_day_level_2 = daily_energy_kwh / charger_kw_level_2
-    required_hours_per_day_level_1 = daily_energy_kwh / charger_kw_level_1
+        kwh_per_mile = assumptions["kwh_per_mile"]
+        charger_kw_level_2 = assumptions["charger_kw_level_2"]
+        charger_kw_level_1 = assumptions["charger_kw_level_1"]
+        driver_profiles = assumptions["driver_profiles"]
 
-    # Simulate charging costs over two days
-    # Todo don't pass in each level, pass in once and just call this one time
-    # for each level
-    charging_costs = simulate_charging_costs(
-        rate_plans, driver_profiles,
-        required_hours_per_day_level_2,
-        required_hours_per_day_level_1,
-        charger_kw_level_2,
-        charger_kw_level_1
-    )
+        # Calculate the daily charging needs in kWh and hours
+        daily_energy_kwh = distance * kwh_per_mile * 2  # round-trip
+        required_hours_per_day_level_2 = daily_energy_kwh / charger_kw_level_2
+        required_hours_per_day_level_1 = daily_energy_kwh / charger_kw_level_1
 
-    # Print and save the results
-    print_charging_costs(charging_costs)
+        # Simulate charging costs over two days
+        # Todo don't pass in each level, pass in once and just call this one time
+        # for each level
+        charging_costs = simulate_charging_costs(
+            rate_plans, 
+            driver_profiles,
+            required_hours_per_day_level_2,
+            required_hours_per_day_level_1,
+            charger_kw_level_2,
+            charger_kw_level_1
+        )
+
+        # Print and save the results
+        print_charging_costs(charging_costs, name)
 
 # Run the main function
 if __name__ == "__main__":
