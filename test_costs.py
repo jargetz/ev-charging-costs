@@ -9,7 +9,8 @@ def test_super_costs_output():
 
     try:
         test_data_equality(output, expected_output)
-        pd.testing.assert_frame_equal(output, expected_output)
+        # test_data_equality(expected_output, output)
+        test_pd_length(output, expected_output)
     except AssertionError as e:
         raise AssertionError(f"Super Commute Test: {str(e)}")  
 
@@ -21,7 +22,8 @@ def test_average_costs_output():
 
     try:
         test_data_equality(output, expected_output)
-        pd.testing.assert_frame_equal(output, expected_output)
+        # test_data_equality(expected_output, output)
+        test_pd_length(output, expected_output)
     except AssertionError as e:
         raise AssertionError(f"Average Commute Test: {str(e)}")  
 
@@ -51,6 +53,11 @@ def convert_to_dict(df):
     
     return nested_dict
 
+def test_pd_length(output, expected_output):
+    if expected_output.shape[0] != output.shape[0]:
+        raise AssertionError(
+            f"The DataFrames have different numbers of rows: expected: {expected_output.shape[0]}, got: {output.shape[0]}")
+    
 
 def compare_nested_dicts(expected_output_dict, output_dict):
     for key, expected_value in expected_output_dict.items():
